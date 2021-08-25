@@ -17,6 +17,11 @@ use Jiannei\LaravelDeployer\Commands\DeployWebhook;
 
 class LaravelServiceProvider extends ServiceProvider
 {
+    public function register()
+    {
+        $this->mergeConfigFrom(dirname(__DIR__, 2).'/config/deploy.php', 'deploy');
+    }
+
     public function boot()
     {
         if ($this->app->runningInConsole()) {
@@ -24,6 +29,12 @@ class LaravelServiceProvider extends ServiceProvider
                 Deploy::class,
                 DeployWebhook::class,
             ]);
+
+            $this->publishes([dirname(__DIR__, 2).'/config/deploy.php' => config_path('deploy.php')], 'deploy');
+
+            if ($recipesPath =$this->app['config']->get('deploy.recipes.path')) {
+                set_include_path(get_include_path() . PATH_SEPARATOR . $recipesPath);
+            }
         }
     }
 }

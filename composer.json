@@ -9,9 +9,6 @@
         }
     ],
     "autoload": {
-        "files": [
-            "deploy/webhook.php"
-        ],
         "psr-4": {
             "Jiannei\\LaravelDeployer\\": "src"
         }

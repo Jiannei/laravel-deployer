@@ -12,6 +12,10 @@
 return [
     'bin' => 'vendor/bin/dep',
 
+    'recipes' => [
+        'path' => dirname(__DIR__).PATH_SEPARATOR.'recipes'
+    ],
+
     'file' => [
         'path' => env('DEPLOY_FILE_PATH', storage_path('app/deploy')),
         'name' => env('DEPLOY_FILE_NAME', 'deploy.yaml'),
