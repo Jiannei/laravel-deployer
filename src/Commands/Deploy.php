@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of the Jiannei/laravel-deployer.
+ *
+ * (c) Jiannei <longjian.huang@foxmail.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
 namespace Jiannei\LaravelDeployer\Commands;
 
 use Illuminate\Console\Command;
@@ -91,16 +100,16 @@ class Deploy extends Command
             $file = $filePath."/{$workspace}-{$project}-{$fileName}";
         }
 
-        if (!File::exists($file)) {
+        if (! File::exists($file)) {
             throw new \RuntimeException('No deploy config file exists');
         }
 
-        return "--file=".$file;
+        return '--file='.$file;
     }
 
     protected function getDeployLogOption(): string
     {
-        if (!config('deploy.log.enable') || !strtobool($this->option('log'))) {
+        if (! config('deploy.log.enable') || ! strtobool($this->option('log'))) {
             return '';
         }
 
@@ -109,7 +118,7 @@ class Deploy extends Command
 
     protected function getDeployProfileOption(): string
     {
-        if (!config('deploy.profile.enable') || !strtobool($this->option('profile'))) {
+        if (! config('deploy.profile.enable') || ! strtobool($this->option('profile'))) {
             return '';
         }
 
