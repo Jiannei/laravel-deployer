@@ -1,0 +1,28 @@
+{
+    "name": "jiannei\/laravel-deployer",
+    "description": "Deployer.",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jiannei",
+            "email": "longjian.huang@foxmail.com"
+        }
+    ],
+    "autoload": {
+        "files": [
+            "deploy/webhook.php"
+        ],
+        "psr-4": {
+            "Jiannei\\LaravelDeployer\\": "src"
+        }
+    },
+    "require": {
+        "deployer/deployer": "^7.0",
+        "jiannei/helpers": "^0.2.1"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^6.0"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable" : true
+}
