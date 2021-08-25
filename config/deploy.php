@@ -13,7 +13,7 @@ return [
     'bin' => 'vendor/bin/dep',
 
     'recipes' => [
-        'path' => dirname(__DIR__).PATH_SEPARATOR.'recipes'
+        'path' => dirname(__DIR__).PATH_SEPARATOR.'recipes',
     ],
 
     'file' => [
