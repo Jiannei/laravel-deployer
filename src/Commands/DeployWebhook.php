@@ -1,13 +1,22 @@
 <?php
 
+/*
+ * This file is part of the Jiannei/laravel-deployer.
+ *
+ * (c) Jiannei <longjian.huang@foxmail.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
 namespace Jiannei\LaravelDeployer\Commands;
 
+use Illuminate\Console\Command;
 use Jiannei\LaravelDeployer\Events\DeployHookBuildEvent;
 use Jiannei\LaravelDeployer\Events\DeployHookDoneEvent;
 use Jiannei\LaravelDeployer\Events\DeployHookFailEvent;
 use Jiannei\LaravelDeployer\Events\DeployHookStartEvent;
 use Jiannei\LaravelDeployer\Events\DeployHookSuccessEvent;
-use Illuminate\Console\Command;
 use Symfony\Component\Console\Input\InputArgument;
 
 class DeployWebhook extends Command
@@ -48,7 +57,7 @@ class DeployWebhook extends Command
             default:
                 $this->error('Unsupported hook type');
 
-                return 1;// throw exception
+                return 1; // throw exception
         }
 
         return 0;
