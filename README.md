@@ -1,5 +1,12 @@
 # laravel-deployer
 
+![StyleCI](https://github.styleci.io/repos/399765675/shield?style=flat&branch=main)
+[![Latest Stable Version](http://poser.pugx.org/jiannei/laravel-deployer/v)](https://packagist.org/packages/jiannei/laravel-deployer)
+[![Total Downloads](http://poser.pugx.org/jiannei/laravel-deployer/downloads)](https://packagist.org/packages/jiannei/laravel-deployer)
+[![Monthly Downloads](http://poser.pugx.org/jiannei/laravel-deployer/d/monthly)](https://packagist.org/packages/jiannei/laravel-deployer)
+[![Version](http://poser.pugx.org/jiannei/laravel-deployer/version)](https://packagist.org/packages/jiannei/laravel-deployer)
+[![License](http://poser.pugx.org/jiannei/laravel-deployer/license)](https://packagist.org/packages/jiannei/laravel-deployer)
+
 ## 功能
 
 TODO
