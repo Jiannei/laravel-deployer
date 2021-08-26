@@ -1,0 +1,64 @@
+import:
+  - recipe/laravel.php
+  - contrib/yarn.php
+  - recipes/webhook.php
+
+config:
+  app_path: '/var/www/laravel-api-starter' # 发布机路径
+  workspace: 'php'
+  application: 'sinan'
+  repository: 'git@gitee.com:Jiannei/sinan.git'
+  branch: 'master'
+  git_tty: true
+  git_recursive: false
+  keep_releases: 3
+
+hosts:
+  prod:
+    hostname: sinan.fun
+    remote_user: root
+    port: 22
+    identity_file: '~/.ssh/deploykey'
+    ssh_multiplexing: true
+    deploy_path: '/www/wwwroot/{{hostname}}'
+
+tasks:
+  deploy:
+    - deploy:prepare
+    - deploy:vendors
+    - artisan:storage:link
+    - artisan:view:cache
+    - artisan:config:cache
+    - deploy:publish
+
+  yarn:build:
+    script:
+      - 'cd {{release_path}} && yarn prod'
+
+  hook:start:
+    - webhook:start
+
+  hook:build:
+    - webhook:build
+    - yarn:install
+    - yarn:build
+
+  hook:success:
+    - webhook:success
+
+  hook:failed:
+    - webhook:fail
+
+  hook:done:
+    - webhook:done
+
+before:
+  deploy: hook:start
+  deploy:publish: hook:build
+
+after:
+  deploy: hook:done
+  deploy:success: hook:success
+  deploy:failed:
+    - deploy:unlock
+    - hook:failed
