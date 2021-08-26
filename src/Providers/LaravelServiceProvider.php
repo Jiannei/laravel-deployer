@@ -31,10 +31,7 @@ class LaravelServiceProvider extends ServiceProvider
             ]);
 
             $this->publishes([dirname(__DIR__, 2).'/config/deploy.php' => config_path('deploy.php')], 'deploy');
-
-            if ($recipesPath = $this->app['config']->get('deploy.recipes.path')) {
-                set_include_path(get_include_path().PATH_SEPARATOR.$recipesPath);
-            }
+            $this->publishes([dirname(__DIR__, 2).'/recipes' => base_path('recipes')], 'recipes');
         }
     }
 }
