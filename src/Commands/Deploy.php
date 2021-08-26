@@ -80,9 +80,10 @@ class Deploy extends Command
             $options[] = '-q';
         }
 
+        $options[] = $this->getDeployFileOption($workspace, $project);
+
         if ($this->argument('action') === 'deploy') {
             $options[] = "--option=id={$this->depId}";
-            $options[] = $this->getDeployFileOption($workspace, $project);
             $options[] = $this->getDeployLogOption();
             $options[] = $this->getDeployProfileOption();
         }
