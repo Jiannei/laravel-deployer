@@ -24,10 +24,6 @@ set('app_path', function () {
     throw new \RuntimeException('Please set up the "app_path" option.');
 });
 
-set('webhook_url', function () {
-    throw new \RuntimeException('Please set up the "webhook_url" option.');
-});
-
 task('webhook:start', sendWebhook('start'));
 
 task('webhook:build', sendWebhook('build'));
