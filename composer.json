@@ -1,6 +1,6 @@
 {
     "name": "jiannei\/laravel-deployer",
-    "description": "Deployer.",
+    "description": "Deployment Tool.",
     "license": "MIT",
     "authors": [
         {
