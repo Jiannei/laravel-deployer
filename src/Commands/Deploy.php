@@ -159,9 +159,9 @@ class Deploy extends Command
         return [
             ['workspace', '-W', InputOption::VALUE_REQUIRED, 'Workspace', null],
             ['project', '-P', InputOption::VALUE_REQUIRED, 'Project', null],
-            ['log', '-L', InputOption::VALUE_OPTIONAL, 'Write log to a file', true],
+            ['log', '-L', InputOption::VALUE_OPTIONAL, 'Write log to a file', false],
             ['profile', '', InputOption::VALUE_OPTIONAL, 'Write profile to a file', false],
-            ['async', '-A', InputOption::VALUE_OPTIONAL, 'Asynchronous deploy?', true],
+            ['async', '-A', InputOption::VALUE_OPTIONAL, 'Asynchronous deploy?', false],
             ['queue', '-Q', InputOption::VALUE_OPTIONAL, 'Set the desired queue for deploy job', 'deploy'],
             ['connection', '-C', InputOption::VALUE_OPTIONAL, 'Set the desired connection for deploy job', config('queue.default')],
         ];
