@@ -11,12 +11,18 @@
 
 namespace Jiannei\LaravelDeployer\Jobs;
 
+use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Foundation\Bus\Dispatchable;
+use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Queue\SerializesModels;
 use Symfony\Component\Process\Process;
 use Throwable;
 
 class DeployJob implements ShouldQueue
 {
+    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+
     private $depBinary;
     private $depOptions;
 
