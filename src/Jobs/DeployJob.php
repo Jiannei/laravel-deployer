@@ -16,12 +16,12 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use Symfony\Component\Process\Process;
+use Jiannei\LaravelDeployer\Support\Shellable;
 use Throwable;
 
 class DeployJob implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels,Shellable;
 
     private $depBinary;
     private $depOptions;
@@ -65,14 +65,8 @@ class DeployJob implements ShouldQueue
         throw $exception;
     }
 
-    protected function exec($command)
+    protected function isTtySupported(): bool
     {
-        Process::fromShellCommandline($command)
-            ->setTty(false)
-            ->setWorkingDirectory(base_path())
-            ->setTimeout(null)
-            ->setIdleTimeout(null)
-            ->mustRun()
-            ->getExitCode();
+        return false;
     }
 }

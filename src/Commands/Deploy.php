@@ -15,12 +15,14 @@ use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use Jiannei\LaravelDeployer\Jobs\DeployJob;
+use Jiannei\LaravelDeployer\Support\Shellable;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
-use Symfony\Component\Process\Process;
 
 class Deploy extends Command
 {
+    use Shellable;
+
     protected $name = 'dep';
 
     protected $description = 'Deploy project.';
@@ -124,28 +126,6 @@ class Deploy extends Command
         }
 
         return '--profile='.config('deploy.profile.path')."/deploy-{$this->depId}.profile";
-    }
-
-    /**
-     * 执行 shell 命令.
-     *
-     * @param  string  $command
-     * @return int|null
-     */
-    protected function exec(string $command): ?int
-    {
-        return Process::fromShellCommandline($command)
-            ->setTty($this->isTtySupported())
-            ->setWorkingDirectory(base_path())
-            ->setTimeout(null)
-            ->setIdleTimeout(null)
-            ->mustRun()
-            ->getExitCode();
-    }
-
-    protected function isTtySupported(): bool
-    {
-        return config('app.env') !== 'testing' && Process::isTtySupported();
     }
 
     protected function getArguments(): array
