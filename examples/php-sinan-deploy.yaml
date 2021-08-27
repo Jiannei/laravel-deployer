@@ -18,7 +18,7 @@ hosts:
     hostname: sinan.fun
     remote_user: root
     port: 22
-    identity_file: '~/.ssh/deploykey'
+    identity_file: '/var/www/laravel-api-starter/storage/app/deploy/sinan'
     ssh_multiplexing: true
     deploy_path: '/www/wwwroot/{{hostname}}'
 
