@@ -13,6 +13,7 @@ namespace Jiannei\LaravelDeployer\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Jiannei\LaravelDeployer\Commands\Deploy;
+use Jiannei\LaravelDeployer\Commands\DeployIdentity;
 use Jiannei\LaravelDeployer\Commands\DeployWebhook;
 
 class LaravelServiceProvider extends ServiceProvider
@@ -27,6 +28,7 @@ class LaravelServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
             $this->commands([
                 Deploy::class,
+                DeployIdentity::class,
                 DeployWebhook::class,
             ]);
 
