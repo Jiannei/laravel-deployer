@@ -1,0 +1,41 @@
+import:
+    - recipe/common.php
+    - contrib/npm.php
+    - recipes/update_code.php
+
+config:
+    app_path: '/var/www/laravel-api-starter' # 发布机路径
+    workspace: 'js'
+    application: 'docs'
+    repository: 'git@gitee.com:Jiannei/docs.git'
+    branch: 'main'
+    git_tty: true
+    git_recursive: false
+    keep_releases: 30
+
+hosts:
+    docs:
+        hostname: docs.sinan.fun
+        remote_user: root
+        port: 22
+        identity_file: '/home/vagrant/Code/laravel-api-starter/storage/app/deploy/docs'
+        ssh_multiplexing: true
+        deploy_path: '/www/wwwroot/{{hostname}}'
+
+tasks:
+    deploy:
+        - deploy:prepare
+        - deploy:publish
+
+    npm:build:
+        script:
+            - 'cd {{release_path}} && npm run prod'
+
+before:
+    deploy:publish:
+        - npm:install
+        - npm:build
+
+after:
+    deploy:failed:
+        - deploy:unlock
