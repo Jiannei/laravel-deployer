@@ -1,8 +1,12 @@
 <?php
-/* (c) Anton Medvedev <anton@medv.io>
+
+/*
+ * This file is part of the Jiannei/laravel-deployer.
  *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
+ * (c) Jiannei <longjian.huang@foxmail.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
  */
 
 namespace Deployer;
@@ -21,7 +25,7 @@ set('branch', function () {
         $branch = null; // Travis-CI fix
     }
 
-    if (input()->hasOption('branch') && !empty(input()->getOption('branch'))) {
+    if (input()->hasOption('branch') && ! empty(input()->getOption('branch'))) {
         $branch = input()->getOption('branch');
     }
 
@@ -39,8 +43,9 @@ set('git_cache', function () {
     if (preg_match('/((\d+\.?)+)/', $gitVersion, $regs)) {
         $version = $regs[1];
     } else {
-        $version = "1.0.0";
+        $version = '1.0.0';
     }
+
     return version_compare($version, '2.3', '>=');
 });
 
@@ -59,14 +64,14 @@ task('deploy:update_code:v6', function () {
     ];
 
     $at = '';
-    if (!empty($branch)) {
+    if (! empty($branch)) {
         $at = "-b $branch";
     }
 
     // If option `tag` is set
     if (input()->hasOption('tag')) {
         $tag = input()->getOption('tag');
-        if (!empty($tag)) {
+        if (! empty($tag)) {
             $at = "-b $tag";
         }
     }
@@ -74,7 +79,7 @@ task('deploy:update_code:v6', function () {
     // If option `tag` is not set and option `revision` is set
     if (empty($tag) && input()->hasOption('revision')) {
         $revision = input()->getOption('revision');
-        if (!empty($revision)) {
+        if (! empty($revision)) {
             $depth = '';
         }
     }
@@ -96,7 +101,7 @@ task('deploy:update_code:v6', function () {
         run("$git clone $at $depth $recursive $quiet $repository {{release_path}} 2>&1", $options);
     }
 
-    if (!empty($revision)) {
+    if (! empty($revision)) {
         run("cd {{release_path}} && $git checkout $revision");
     }
 });

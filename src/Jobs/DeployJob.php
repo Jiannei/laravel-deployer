@@ -54,6 +54,7 @@ class DeployJob implements ShouldQueue
      *
      * @param  \Throwable  $exception
      * @return void
+     *
      * @throws Throwable
      */
     public function failed(Throwable $exception)
