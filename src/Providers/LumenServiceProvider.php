@@ -33,7 +33,6 @@ class LumenServiceProvider extends ServiceProvider
                 DeployIdentity::class,
                 DeployWebhook::class,
             ]);
-
         }
     }
 }
