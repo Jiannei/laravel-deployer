@@ -1,7 +1,6 @@
 import:
     - recipe/common.php
     - contrib/npm.php
-    - recipes/update_code.php
 
 config:
     app_path: '/var/www/laravel-api-starter' # 发布机路径
@@ -12,6 +11,7 @@ config:
     git_tty: true
     git_recursive: false
     keep_releases: 30
+    update_code_strategy: clone
 
 hosts:
     docs:
